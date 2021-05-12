@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerMovement : MonoBehaviour {
   public int speed;
 
   void Update()  {
-    if (Input.GetMouseButton(0)) {
+    // also stops movement on ui clicks
+    if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
       Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
       Vector2 currentPosition = gameObject.transform.position;
 
