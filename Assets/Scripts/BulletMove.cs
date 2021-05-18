@@ -22,4 +22,8 @@ public class BulletMove : MonoBehaviour
         Destroy(gameObject);
       }
     }
+
+    void OnCollisionEnter2D(Collision2D col) {
+      Destroy(gameObject);
+    }
 }

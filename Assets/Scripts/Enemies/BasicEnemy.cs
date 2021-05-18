@@ -20,14 +20,12 @@ public class BasicEnemy : MonoBehaviour, IEnemy
     Vector3 tempVect;
     Vector3 maxScreenBounds;
 
-    void Start()
-    {
+    void Start() {
       rb = GetComponent<Rigidbody2D>();
       maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
     }
 
-    void FixedUpdate ()
-    {
+    void FixedUpdate () {
       Move();
     }
 
@@ -56,5 +54,9 @@ public class BasicEnemy : MonoBehaviour, IEnemy
         tempVect = tempVect.normalized * speed * Time.deltaTime;
         rb.MovePosition(rb.transform.position + tempVect);
       }
+    }
+
+    void OnCollisionEnter2D(Collision2D col) {
+      Destroy(gameObject);
     }
 }
