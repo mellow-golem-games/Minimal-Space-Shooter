@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour, IEnemy
 {
-
+    public GameObject bulletPrefab;
 
     [SerializeField]
     private int speed = 4;
+
+    [SerializeField]
+    private int shootTimer = 60;
 
     private Rigidbody2D rb;
 
@@ -22,11 +25,13 @@ public class BasicEnemy : MonoBehaviour, IEnemy
 
     void Start() {
       rb = GetComponent<Rigidbody2D>();
+      Physics2D.IgnoreLayerCollision(9, 10);
       maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
     }
 
     void FixedUpdate () {
       Move();
+      Shoot();
     }
 
     public bool CheckBounds(Vector3 nextPosition) {
@@ -43,7 +48,7 @@ public class BasicEnemy : MonoBehaviour, IEnemy
         Vector3 nextPosition = rb.transform.position + tempVect;
 
         if(CheckBounds(nextPosition)) {
-          Debug.Log("OOB");
+          // Debug.Log("OOB");
          // handle the case where it's OOB  right now it just stutters
         } else {
           rb.MovePosition(nextPosition);
@@ -58,5 +63,13 @@ public class BasicEnemy : MonoBehaviour, IEnemy
 
     void OnCollisionEnter2D(Collision2D col) {
       Destroy(gameObject);
+    }
+
+    public void Shoot() {
+      if (Time.frameCount % shootTimer == 0) {
+        GameObject bullet = Instantiate(bulletPrefab, new Vector3(rb.transform.position.x, rb.transform.position.y, 0), Quaternion.identity);
+        bullet.layer = LayerMask.NameToLayer("EnemyBullets");
+        bullet.tag = "Enemy";
+      }
     }
 }

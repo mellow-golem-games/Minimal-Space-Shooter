@@ -14,12 +14,14 @@ public class BulletMove : MonoBehaviour
     }
 
     void LateUpdate() {
-      transform.Translate (Vector2.right * speed * Time.deltaTime);
+      int factor = gameObject.tag == "Enemy" ? -1 : 1; // enemies fire opposite direction
+      transform.Translate (Vector2.right * speed * Time.deltaTime * factor);
     }
 
     void Update() {
       if (!m_Renderer.isVisible) {
-        Destroy(gameObject);
+        // TODO fix this as it fires when new bullets are created on enemies
+        // Destroy(gameObject);
       }
     }
 

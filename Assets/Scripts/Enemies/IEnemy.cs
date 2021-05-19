@@ -6,5 +6,7 @@ public interface IEnemy {
 
    void Move();
 
+   void Shoot();
+
    bool CheckBounds(Vector3 nextPosition);
 }

@@ -6,6 +6,11 @@ using UnityEngine.EventSystems;
 public class PlayerMovement : MonoBehaviour {
   public int speed;
 
+
+  void Start() {
+    Physics2D.IgnoreLayerCollision(0, 11);
+  }
+
   void Update()  {
     // also stops movement on ui clicks
     if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
@@ -17,5 +22,11 @@ public class PlayerMovement : MonoBehaviour {
 
       transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
+  }
+
+  void OnCollisionEnter2D(Collision2D col) {
+    Destroy(gameObject);
+
+    //TODO handle end game
   }
 }

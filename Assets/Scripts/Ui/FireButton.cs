@@ -12,6 +12,7 @@ public class FireButton : MonoBehaviour
       float playerX = playerRef.transform.position.x;
       float playerY = playerRef.transform.position.y;
 
-      Instantiate(bulletPrefab, new Vector3(playerX, playerY, 0), Quaternion.identity);
+      GameObject bullet = Instantiate(bulletPrefab, new Vector3(playerX, playerY, 0), Quaternion.identity);
+      bullet.layer = 11;
     }
 }
