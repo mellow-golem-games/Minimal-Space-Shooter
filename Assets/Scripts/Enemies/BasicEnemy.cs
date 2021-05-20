@@ -1,10 +1,14 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BasicEnemy : MonoBehaviour, IEnemy
 {
     public GameObject bulletPrefab;
+
+    //Events
+    public static event Action OnBasicEnemyDestroyed;
 
     [SerializeField]
     private int speed = 4;
@@ -26,6 +30,7 @@ public class BasicEnemy : MonoBehaviour, IEnemy
     void Start() {
       rb = GetComponent<Rigidbody2D>();
       Physics2D.IgnoreLayerCollision(9, 10);
+      Physics2D.IgnoreLayerCollision(9, 9);
       maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
     }
 
@@ -55,7 +60,7 @@ public class BasicEnemy : MonoBehaviour, IEnemy
         }
       } else {
         currentFrameDirection = 0;
-        tempVect = new Vector3(Random.Range(-1,2), Random.Range(-1,2), 0);
+        tempVect = new Vector3(UnityEngine.Random.Range(-1,2), UnityEngine.Random.Range(-1,2), 0);
         tempVect = tempVect.normalized * speed * Time.deltaTime;
         rb.MovePosition(rb.transform.position + tempVect);
       }
@@ -63,6 +68,7 @@ public class BasicEnemy : MonoBehaviour, IEnemy
 
     void OnCollisionEnter2D(Collision2D col) {
       Destroy(gameObject);
+      OnBasicEnemyDestroyed?.Invoke();
     }
 
     public void Shoot() {
