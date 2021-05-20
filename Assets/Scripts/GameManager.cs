@@ -33,6 +33,5 @@ public class GameManager : MonoBehaviour
 
     private void BasicEnemyDestroyed() {
       basicEnemyCount--;
-      Debug.Log(basicEnemyCount);
     }
 }
