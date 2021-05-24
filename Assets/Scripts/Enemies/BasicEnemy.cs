@@ -24,6 +24,10 @@ public class BasicEnemy : MonoBehaviour, IEnemy
     private double SIZEX = 0.49; //constant size of the basic enemy in pixels TODO change for resolution
     private double SIZEY = 0.51;
 
+    private bool isSpawning = true;
+    private float spawnX;
+    private float spawnY;
+
     Vector3 tempVect;
     Vector3 maxScreenBounds;
 
@@ -32,11 +36,36 @@ public class BasicEnemy : MonoBehaviour, IEnemy
       Physics2D.IgnoreLayerCollision(9, 10);
       Physics2D.IgnoreLayerCollision(9, 9);
       maxScreenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0));
+
+      spawnX = getSpawnXPos();
+      spawnY = getSpawnYPos();
     }
 
     void FixedUpdate () {
-      Move();
-      Shoot();
+      if (!isSpawning) {
+        Move();
+        Shoot();
+      } else {
+        SpawnMove();
+      }
+    }
+
+    private float getSpawnXPos() {
+      return maxScreenBounds.x - 1.5f;
+    }
+
+    private float getSpawnYPos() {
+      return maxScreenBounds.y * UnityEngine.Random.Range(-0.5f, 0.5f);
+    }
+
+    private void SpawnMove() {
+      Vector3 target = new Vector3(spawnX, spawnY, 0);
+      float step =  speed * Time.deltaTime; // calculate distance to move
+      gameObject.transform.position = Vector3.MoveTowards(transform.position, target, step);
+
+      if (gameObject.transform.position.x == spawnX && gameObject.transform.position.y == spawnY) {
+        isSpawning= false;
+      }
     }
 
     public bool CheckBounds(Vector3 nextPosition) {
