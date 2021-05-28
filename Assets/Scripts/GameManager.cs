@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     private Vector3 maxScreenBounds;
 
+
     void OnEnable() {
       BasicEnemy.OnBasicEnemyDestroyed += BasicEnemyDestroyed;
     }
