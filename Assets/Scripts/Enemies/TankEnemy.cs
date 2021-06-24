@@ -6,6 +6,7 @@ using UnityEngine;
 public class TankEnemy : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public int health = 5;
 
     //Events
     public static event Action OnTankEnemyDestroyed;
@@ -24,6 +25,7 @@ public class TankEnemy : MonoBehaviour
     private double SIZEX = 0.49; //constant size of the basic enemy in pixels TODO change for resolution
     private double SIZEY = 0.51;
 
+    private GameObject HealthBar;
     private bool isSpawning = true;
     private float spawnX;
     private float spawnY;
@@ -31,7 +33,10 @@ public class TankEnemy : MonoBehaviour
     Vector3 tempVect;
     Vector3 maxScreenBounds;
 
+
+
     void Start() {
+      HealthBar = gameObject.transform.GetChild(0).gameObject;
       rb = GetComponent<Rigidbody2D>();
       Physics2D.IgnoreLayerCollision(9, 10);
       Physics2D.IgnoreLayerCollision(9, 9);
@@ -96,8 +101,14 @@ public class TankEnemy : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-      Destroy(gameObject);
-      OnTankEnemyDestroyed?.Invoke();
+
+      if (health > 1) {
+        health--;
+        HealthBar.transform.localScale += new Vector3(-0.2f,0,0);
+      } else {
+        Destroy(gameObject);
+        OnTankEnemyDestroyed?.Invoke();
+      }
     }
 
     public void Shoot() {
