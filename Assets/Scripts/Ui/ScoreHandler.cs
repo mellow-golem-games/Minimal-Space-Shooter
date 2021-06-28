@@ -9,14 +9,17 @@ public class ScoreHandler : MonoBehaviour
   private int score = 0;
 
   private int basicEnemyValue = 10;
+  private int bossEnemyValue = 50;
 
   void OnEnable() {
     BasicEnemy.OnBasicEnemyDestroyed += BasicEnemyDestroyed;
+    TankEnemy.OnTankEnemyDestroyed += TankEnemyDestroyed;
   }
 
 
   void onDisable() {
     BasicEnemy.OnBasicEnemyDestroyed -= BasicEnemyDestroyed;
+    TankEnemy.OnTankEnemyDestroyed -= TankEnemyDestroyed;
   }
 
   void Start () {
@@ -34,6 +37,11 @@ public class ScoreHandler : MonoBehaviour
 
   private void BasicEnemyDestroyed() {
     score += basicEnemyValue;
+    updateScoreText();
+  }
+
+  private void TankEnemyDestroyed() {
+    score += bossEnemyValue;
     updateScoreText();
   }
 

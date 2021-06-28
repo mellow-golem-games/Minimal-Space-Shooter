@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7826554903130116160, guid: 2647bce4d7e3fd143a1c4dbd07fdfcc3, type: 3}
+  health: 5
   speed: 2
   shootTimer: 45
 --- !u!61 &5410255379120369566
@@ -147,7 +148,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &7282142248120080132
 GameObject:
   m_ObjectHideFlags: 0
