@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     private int basicEnemyCount = 0;
     private int maxBasicEnemy = 5;
-    private int score = 0; // TODO this was fine for testing but now we have this in two places, turn to scripable so we can re-use
 
     private Vector3 maxScreenBounds;
 
@@ -22,20 +21,19 @@ public class GameManager : MonoBehaviour
     private int scoreSinceBoss = 0;
     private bool bossSpawned = false;
 
-    // enemy values
-    private int basicEnemyScoreVal = 10;
-    private int bossEnemyScoreVal = 50;
 
 
     void OnEnable() {
       BasicEnemy.OnBasicEnemyDestroyed += BasicEnemyDestroyed;
       TankEnemy.OnTankEnemyDestroyed += TankEnemyDestroyed;
+      ScoreHandler.OnScoreChange += ScoreChangeHandler;
     }
 
 
     void onDisable() {
       BasicEnemy.OnBasicEnemyDestroyed -= BasicEnemyDestroyed;
       TankEnemy.OnTankEnemyDestroyed -= TankEnemyDestroyed;
+      ScoreHandler.OnScoreChange -= ScoreChangeHandler;
     }
 
     void Start() {
@@ -51,7 +49,10 @@ public class GameManager : MonoBehaviour
       }
     }
 
-
+    private void ScoreChangeHandler(int value) {
+      Debug.Log(value);
+      scoreSinceBoss+= value;
+    }
 
     private void SpawnBasicEnemy() {
       if (basicEnemyCount < maxBasicEnemy && timeSinceBasicEnemySpawn >= timeToSpawnBasicEnemy) {
@@ -63,8 +64,6 @@ public class GameManager : MonoBehaviour
 
     private void BasicEnemyDestroyed() {
       basicEnemyCount--;
-      score+= basicEnemyScoreVal;
-      scoreSinceBoss+= basicEnemyScoreVal;
     }
 
     private void SpawnBossEnemy() {
@@ -75,7 +74,6 @@ public class GameManager : MonoBehaviour
     }
 
     private void TankEnemyDestroyed() {
-      score+= bossEnemyScoreVal;
       bossSpawned = false;
       scoreSinceBoss = 0;
     }

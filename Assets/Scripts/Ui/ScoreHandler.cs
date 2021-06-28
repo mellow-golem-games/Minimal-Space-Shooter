@@ -1,4 +1,5 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class ScoreHandler : MonoBehaviour
 
   private int basicEnemyValue = 10;
   private int bossEnemyValue = 50;
+
+  public static event Action<int> OnScoreChange;
 
   void OnEnable() {
     BasicEnemy.OnBasicEnemyDestroyed += BasicEnemyDestroyed;
@@ -33,6 +36,7 @@ public class ScoreHandler : MonoBehaviour
 
   private void updateScoreText() {
     highScore.text = "Score: " + score;
+    OnScoreChange?.Invoke(score);
   }
 
   private void BasicEnemyDestroyed() {
