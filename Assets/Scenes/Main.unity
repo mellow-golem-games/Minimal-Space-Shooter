@@ -256,8 +256,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BasicEnemyPrefab: {fileID: 2806241207639585327, guid: ca8a5a1b3ae476c4481b7a9af84b48cc, type: 3}
+  SpeedyEnemyPrefab: {fileID: 1268540181696690233, guid: 20a021c9420895543a6827c35f32b8f4, type: 3}
   BossEnemyPrefab: {fileID: 5410255379120369569, guid: 9975bd65a1a557142856490a07fbefb7, type: 3}
   timeToSpawnBasicEnemy: 5
+  timeToSpawnSpeedyEnemy: 10
   scoreForBoss: 100
 --- !u!20 &519420031
 Camera:
@@ -914,7 +916,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.8717949, y: 1}
+    oldSize: {x: 0.43589744, y: 0.5}
     newSize: {x: 0.8717949, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

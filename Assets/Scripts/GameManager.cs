@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject BasicEnemyPrefab;
+    public GameObject SpeedyEnemyPrefab;
     public GameObject BossEnemyPrefab;
 
     private int basicEnemyCount = 0;
@@ -15,6 +16,9 @@ public class GameManager : MonoBehaviour
     //enemy spawning stuff
     public float timeToSpawnBasicEnemy = 5.0f;
     private float timeSinceBasicEnemySpawn = 0.0f;
+
+    public float timeToSpawnSpeedyEnemy = 10.0f;
+    private float timeSinceSpeedyEnemySpawn = 0.0f;
 
 
     public int scoreForBoss = 100;
@@ -42,16 +46,24 @@ public class GameManager : MonoBehaviour
 
     void Update() {
       timeSinceBasicEnemySpawn += Time.deltaTime;
+      timeSinceSpeedyEnemySpawn += Time.deltaTime;
       if (!bossSpawned) {
         // we don't spawn new enemies while the boss is active
         SpawnBasicEnemy();
+        SpawnSpeedyEnemy();
         SpawnBossEnemy();
       }
     }
 
     private void ScoreChangeHandler(int value) {
-      Debug.Log(value);
       scoreSinceBoss+= value;
+    }
+
+    private void SpawnSpeedyEnemy() {
+      if(timeSinceSpeedyEnemySpawn >= timeToSpawnSpeedyEnemy) {
+        Instantiate(SpeedyEnemyPrefab, new Vector3(maxScreenBounds.x + 3, 0, 0), Quaternion.identity);
+        timeSinceSpeedyEnemySpawn = 0.0f;
+      }
     }
 
     private void SpawnBasicEnemy() {
