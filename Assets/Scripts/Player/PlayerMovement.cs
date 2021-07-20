@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
   public int speed;
@@ -24,9 +25,14 @@ public class PlayerMovement : MonoBehaviour {
     }
   }
 
-  void OnCollisionEnter2D(Collision2D col) {
-    Destroy(gameObject);
+  private void EndGame() {
+    // weird place for it but this is our end game trigger anyways so should be fine
+    SceneManager.LoadScene("Over");
+  }
 
-    //TODO handle end game
+  void OnCollisionEnter2D(Collision2D col) {
+    // TODO play some sort of animation here before destory as it will stop the invoke from happening
+    // Destroy(gameObject);
+    Invoke("EndGame", 1);
   }
 }
