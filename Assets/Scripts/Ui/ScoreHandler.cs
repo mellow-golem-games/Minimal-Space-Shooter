@@ -12,6 +12,7 @@ public class ScoreHandler : MonoBehaviour
   private int basicEnemyValue = 10;
   private int speedyEnemnyValue = 15;
   private int bossEnemyValue = 50;
+  private int startingHighScore;
 
   public static event Action<int> OnScoreChange;
 
@@ -29,6 +30,7 @@ public class ScoreHandler : MonoBehaviour
   }
 
   void Start () {
+    startingHighScore = PlayerPrefs.GetInt ("highscore", 0);
     highScore.text = "Score: " + score;
   }
 
@@ -37,8 +39,15 @@ public class ScoreHandler : MonoBehaviour
 
   }
 
+  private void checkHighScore(int score) {
+    if (score > startingHighScore) {
+      PlayerPrefs.SetInt ("highscore", score);
+    }
+  }
+
   private void updateScoreText() {
     highScore.text = "Score: " + score;
+    checkHighScore(score);
     OnScoreChange?.Invoke(score);
   }
 
