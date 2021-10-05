@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7826554903130116160, guid: 2647bce4d7e3fd143a1c4dbd07fdfcc3, type: 3}
+  DeathSprite: {fileID: 1716808373891954517, guid: 66b0602abd5c9473eb85dc1d44721583, type: 3}
   health: 5
   speed: 2
   shootTimer: 45
@@ -119,7 +120,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.948718, y: 2}
+    oldSize: {x: 0.974359, y: 1}
     newSize: {x: 1.948718, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

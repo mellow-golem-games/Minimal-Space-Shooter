@@ -6,6 +6,7 @@ using UnityEngine;
 public class TankEnemy : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public GameObject DeathSprite;
     public int health = 5;
 
     //Events
@@ -107,6 +108,7 @@ public class TankEnemy : MonoBehaviour
         HealthBar.transform.localScale += new Vector3(-0.2f,0,0);
       } else {
         Destroy(gameObject);
+        Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
         OnTankEnemyDestroyed?.Invoke();
       }
     }

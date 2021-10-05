@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2806241207639585329}
   - component: {fileID: 2806241207639585328}
   m_Layer: 9
-  m_Name: basic_enemy
+  m_Name: BasicEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -123,7 +123,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2393162, y: 1}
+    oldSize: {x: 0.6196581, y: 0.5}
     newSize: {x: 1.2393162, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -145,5 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7826554903130116160, guid: 2647bce4d7e3fd143a1c4dbd07fdfcc3, type: 3}
+  DeathSprite: {fileID: 1716808373891954517, guid: 66b0602abd5c9473eb85dc1d44721583, type: 3}
   speed: 4
   shootTimer: 60

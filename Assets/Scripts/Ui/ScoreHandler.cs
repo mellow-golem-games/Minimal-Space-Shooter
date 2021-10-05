@@ -46,6 +46,7 @@ public class ScoreHandler : MonoBehaviour
   }
 
   private void updateScoreText() {
+    Debug.Log("test");
     highScore.text = "Score: " + score;
     checkHighScore(score);
     OnScoreChange?.Invoke(score);

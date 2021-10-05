@@ -6,6 +6,7 @@ using UnityEngine;
 public class BasicEnemy : MonoBehaviour, IEnemy
 {
     public GameObject bulletPrefab;
+    public GameObject DeathSprite;
 
     //Events
     public static event Action OnBasicEnemyDestroyed;
@@ -97,6 +98,7 @@ public class BasicEnemy : MonoBehaviour, IEnemy
 
     void OnCollisionEnter2D(Collision2D col) {
       Destroy(gameObject);
+      Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
       OnBasicEnemyDestroyed?.Invoke();
     }
 
