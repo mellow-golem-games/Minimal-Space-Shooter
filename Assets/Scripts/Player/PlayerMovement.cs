@@ -12,9 +12,22 @@ public class PlayerMovement : MonoBehaviour {
     Physics2D.IgnoreLayerCollision(0, 11);
   }
 
+  public static bool IsPointerOverGameObject(){
+
+    //check touch
+    if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began ){
+       if(EventSystem.current.IsPointerOverGameObject(Input.touches[0].fingerId)) {
+          return true;
+        }
+
+        return false;
+    }
+    return false;
+  }
+
   void Update()  {
     // also stops movement on ui clicks
-    if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
+    if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() && !IsPointerOverGameObject()) {
       Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
       Vector2 currentPosition = gameObject.transform.position;
 
