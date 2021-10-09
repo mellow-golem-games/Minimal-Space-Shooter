@@ -7,7 +7,7 @@ public class TankEnemy : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public GameObject DeathSprite;
-    public int health = 5;
+    public int health = 15;
 
     //Events
     public static event Action OnTankEnemyDestroyed;
@@ -105,7 +105,8 @@ public class TankEnemy : MonoBehaviour
 
       if (health > 1) {
         health--;
-        HealthBar.transform.localScale += new Vector3(-0.2f,0,0);
+
+        HealthBar.transform.localScale += new Vector3(-0.066f,0,0);
       } else {
         Destroy(gameObject);
         Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);

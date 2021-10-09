@@ -14,10 +14,10 @@ public class GameManager : MonoBehaviour
     private Vector3 maxScreenBounds;
 
     //enemy spawning stuff
-    public float timeToSpawnBasicEnemy = 5.0f;
+    public float timeToSpawnBasicEnemy = 4.0f;
     private float timeSinceBasicEnemySpawn = 0.0f;
 
-    public float timeToSpawnSpeedyEnemy = 10.0f;
+    public float timeToSpawnSpeedyEnemy = 9.0f;
     private float timeSinceSpeedyEnemySpawn = 0.0f;
 
 
@@ -47,12 +47,9 @@ public class GameManager : MonoBehaviour
     void Update() {
       timeSinceBasicEnemySpawn += Time.deltaTime;
       timeSinceSpeedyEnemySpawn += Time.deltaTime;
-      if (!bossSpawned) {
-        // we don't spawn new enemies while the boss is active
-        SpawnBasicEnemy();
-        SpawnSpeedyEnemy();
-        SpawnBossEnemy();
-      }
+      SpawnBasicEnemy();
+      SpawnSpeedyEnemy();
+      SpawnBossEnemy();
     }
 
     private void ScoreChangeHandler(int value) {

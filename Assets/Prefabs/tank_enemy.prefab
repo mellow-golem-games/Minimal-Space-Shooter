@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 7826554903130116160, guid: 2647bce4d7e3fd143a1c4dbd07fdfcc3, type: 3}
   DeathSprite: {fileID: 1716808373891954517, guid: 66b0602abd5c9473eb85dc1d44721583, type: 3}
-  health: 5
+  health: 15
   speed: 2
   shootTimer: 45
 --- !u!61 &5410255379120369566
