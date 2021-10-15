@@ -11,6 +11,7 @@ public class BulletMove : MonoBehaviour
 
     void Start() {
       m_Renderer = GetComponent<Renderer>();
+      GetComponent<AudioSource>().Play();
     }
 
     void LateUpdate() {
