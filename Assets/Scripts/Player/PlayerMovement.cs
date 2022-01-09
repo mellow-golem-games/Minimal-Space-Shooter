@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
   public int speed;
-
+  public GameObject DeathSprite;
 
   void Start() {
     Physics2D.IgnoreLayerCollision(0, 11);
@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour {
   void OnCollisionEnter2D(Collision2D col) {
     // TODO play some sort of animation here before destory as it will stop the invoke from happening
     // Destroy(gameObject);
+    Destroy (GetComponent<SpriteRenderer>());
+    Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
     Invoke("EndGame", 1);
   }
 }

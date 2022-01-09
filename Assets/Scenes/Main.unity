@@ -985,6 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  DeathSprite: {fileID: 1716808373891954517, guid: 66b0602abd5c9473eb85dc1d44721583, type: 3}
 --- !u!114 &1806157077
 MonoBehaviour:
   m_ObjectHideFlags: 0
