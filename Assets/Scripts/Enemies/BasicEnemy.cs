@@ -97,9 +97,11 @@ public class BasicEnemy : MonoBehaviour, IEnemy
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-      Destroy(gameObject);
-      Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-      OnBasicEnemyDestroyed?.Invoke();
+      if (GetComponent<Renderer>().isVisible) {
+        Destroy(gameObject);
+        Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        OnBasicEnemyDestroyed?.Invoke();
+      }
     }
 
     public void Shoot() {

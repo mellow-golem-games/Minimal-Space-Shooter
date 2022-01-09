@@ -103,14 +103,16 @@ public class TankEnemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col) {
 
-      if (health > 1) {
-        health--;
+      if (GetComponent<Renderer>().isVisible) {
+        if (health > 1) {
+          health--;
 
-        HealthBar.transform.localScale += new Vector3(-0.066f,0,0);
-      } else {
-        Destroy(gameObject);
-        Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-        OnTankEnemyDestroyed?.Invoke();
+          HealthBar.transform.localScale += new Vector3(-0.066f,0,0);
+        } else {
+          Destroy(gameObject);
+          Instantiate(DeathSprite, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+          OnTankEnemyDestroyed?.Invoke();
+        }
       }
     }
 
