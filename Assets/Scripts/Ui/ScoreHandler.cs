@@ -23,7 +23,7 @@ public class ScoreHandler : MonoBehaviour
   }
 
 
-  void onDisable() {
+  void OnDisable() {
     BasicEnemy.OnBasicEnemyDestroyed -= BasicEnemyDestroyed;
     TankEnemy.OnTankEnemyDestroyed -= TankEnemyDestroyed;
     SpeedyEnemy.OnSpeedyEnemyDestroyed -= SpeedyEnemyDestroyed;
