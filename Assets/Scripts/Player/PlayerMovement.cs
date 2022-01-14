@@ -29,12 +29,15 @@ public class PlayerMovement : MonoBehaviour {
     // also stops movement on ui clicks
     if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject() && !IsPointerOverGameObject()) {
       Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-      Vector2 currentPosition = gameObject.transform.position;
 
-      // manually override non moveable direction
-      target.x = currentPosition.x;
+      if (target.x > -8.0) {
+        Vector2 currentPosition = gameObject.transform.position;
 
-      transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        // manually override non moveable direction
+        target.x = currentPosition.x;
+
+        transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
+      }
     }
   }
 
